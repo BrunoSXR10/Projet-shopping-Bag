@@ -1,10 +1,24 @@
-<!-- templates/index.twig -->
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Meu Primeiro Template Twig</title>
-</head>
-<body>
-    <h1>{{ mensagem }}</h1>
-</body>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ name }}</title>
+  </head>
+  <body>
+    <h1>{{ title }}</h1>
+    <a href="./login.twig.html">{{ link }}</a>
+
+    <ul>
+      <p>{{ listTitle }}</p>
+      {% for item in items %}
+      <li>
+        <a href="#">{{ item }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+
+    <h2>{{ heading }}</h2>
+    <p>{{ subtitle }}</p>
+  </body>
 </html>
