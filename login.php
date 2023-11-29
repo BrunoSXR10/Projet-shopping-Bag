@@ -10,7 +10,7 @@ echo $twig->render(
     'login.twig',
     [
         'title' => 'ISIWEB4SHOP',
-        'link' => 'Voir Panier/Payer',
+        'payer' => 'Voir Panier/Payer',
 
         'listTitle' => 'NOTRE OFFER',
         'items' => ['Boisson', 'Biscuits', 'Fruits sec'],
