@@ -1,5 +1,5 @@
 <?php
-define('USER',"root");
-define('PASSWD',"");
-define('SERVER',"localhost");
-define('BASE',"shoppingbag");
+define('USER', 'root');
+define('PASSWD', ''); 
+define('SERVER', 'localhost');
+define('BASE', 'shoppingbag');
