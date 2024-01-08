@@ -2,31 +2,29 @@
 require 'vendor/autoload.php';
 require './models/connect.php';
 
-// Conexão com o banco de dados usando PDO
 try {
     $pdo = new PDO('mysql:host='.SERVER.';dbname='.BASE, USER, PASSWD);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die('Erro na conexão com o banco de dados: ' . $e->getMessage());
+}  catch (PDOException $e) {
+    throw new Exception('Fail: ' . $e->getMessage());
 }
 
-// Se o formulário foi enviado
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Obtenha os dados do formulário
     $surname = $_POST['surname'];
     $forname = $_POST['forname'];
+    $city =  $_POST['city'];
+    $address = $_POST['address'];
     $email = $_POST['email'];
     $phone = $_POST['phone'];
+    $password = $_POST['password'];
 
-    // Faça o que for necessário com esses dados, por exemplo, salvar em um banco de dados
     try {
-        $stmt = $pdo->prepare('INSERT INTO customers (surname, forname, email, phone) VALUES (?, ?, ?, ?)');
-        $stmt->execute([$surname, $forname, $email, $phone]);
+        $stmt = $pdo->prepare('INSERT INTO customers (surname, forname, city, address, email, phone, password) VALUES (?, ?, ?, ?, ?, ?, ?)');
+        $stmt->execute([$surname, $forname, $city, $address, $email, $phone, $password]);
     } catch (PDOException $e) {
         die('Erro ao inserir dados no banco de dados: ' . $e->getMessage());
     }
 
-    // Redirecione para alguma página de sucesso ou renderize um novo template
     header('Location: success.php');
     exit;
 }
@@ -44,8 +42,11 @@ echo $twig->render(
         'items' => ['Boisson', 'Biscuits', 'Fruits sec'],
         'Surname'=> 'Surname',
         'Forname'=> 'Forname',
+        'City' => 'City',
+        'Address' => 'Address',
         'Email'=> 'Email',
-        'Password'=> 'Phone',
+        'Phone'=> 'Phone',
+        'Password' => 'Password'
     ],
 );
 

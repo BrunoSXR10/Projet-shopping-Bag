@@ -1,28 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <title>{{ name }}</title>
-  </head>
-  <body>
-    <h1>{{ title }}</h1>
-    <a href="#">{{ payer }}</a>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ name }}</title>
 
-    <ul>
-      <p>{{ listTitle }}</p>
-      {% for item in items %}
-      <li>
-        <a href="#">{{ item }}</a>
-      </li>
-      {% endfor %}
-    </ul>
-    <a href="./login.php">{{ account }}</a>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Changa:wght@600&family=Kanit&display=swap" rel="stylesheet">
 
-    <h2>{{ heading }}</h2>
-    <p>{{ subtitle }}</p>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-K4soeO+ep8KLx8qjHzRQ1FJ6F9jopPhWi5Ou7z/aCrELbUCbsuZ+klOFSV9MnVpHUNzqS0L8+pylYjgMjXjL5A==" crossorigin="anonymous" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.19.0/font/bootstrap-icons.css">
 
-    <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-  </body>
+  <style>
+    body {
+      text-align: center;
+      font-family: 'Changa', sans-serif; 
+      background-color: #ADD8E6;
+    }
+
+    h1 {
+      color: #000000;
+      font-size: 50px; 
+    }
+
+    
+    .special-element {
+      font-family: 'Kanit', sans-serif;
+    }
+
+
+    .navbar-nav a {
+    color: #ffffff;
+    margin-right: 25px; /* Espace entre les liens */
+    }
+
+    .navbar {
+
+
+    background-color: #001F3F; 
+    }
+
+    .bi-bag-fill {
+    font-size: 1.5rem; 
+    color: #F5F5DC;   
+    }
+    .dropdown-item {
+      color : #001F3F;
+    }
+    .btn-panier {
+    color: #F5F5DC;
+    background-color: #001F3F;
+    transition: background-color 0.3s; /* Transition fluide pour le survol */
+    }
+
+    .btn-panier:hover {
+    background-color: #001F3F; /* Couleur au survol */
+    }
+    
+    
+    button {
+    display: inline-block;
+    border-radius: 10px;
+    background-color: #3d405b;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 17px;
+    padding: 16px;
+    width: 150px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+    }
+
+    button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+    }
+
+    button span:after {
+    content: '»';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -15px;
+    transition: 0.5s;
+    }
+
+    button:hover span {
+    padding-right: 15px;
+    }
+
+    button:hover span:after {
+    opacity: 1;
+    right: 0;
+    }
+   
+   
+  </style>
+  
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="./index.php" style="color: #FFFFFF;">ISIWEB4SHOP</a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+          
+          <a href="./panier.php" class="btn">
+            <i class="bi bi-bag-fill"></i> Voir mon panier
+          </a>
+        </ul>
+        <ul class="navbar-nav ml-auto"> <!-- Utilisation de ml-auto pour aligner à droite -->
+    <!-- ... Autres liens ... -->
+
+            <a href="./login.php" class="nav-link">{{ account }}</a>
+        </ul>
+      </div>
+      <!-- Ajouter l'icône à droite -->
+      
+    </div>
+  </nav>
+
+  <p>
+
+
+  </p>
+  <h1>Bienvenue</h1>
+
+  <p>
+    <h2>Voici nos offres du moment:</h2>
+
+  </p>
+  <div class="card mb-3 mx-auto" style="max-width: 540px;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="C:\xampp\htdocs\Projet-shopping-Bag-main\img\OIP.jpg" > <!--Mettre image thé-->
+
+
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+
+          <h5 class="card-title">Nos Boissons</h5>
+            
+
+          <p href="./boisson.php" class="card-text">Éveillez vos sens avec nos thés délicieusement parfumés et cafés riches en arômes. Plongez dans une expérience gustative exquise qui transforme chaque pause en un moment de pur plaisir.</p>
+          <button id="btnBoissons">
+            <span>Plus d'infos</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<p style="margin-top: 30px;">
+  <div class="card mb-3 mx-auto" style="max-width: 540px;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="..." class="img-fluid rounded-start" > <!--Mettre image biscuits-->
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">Nos Biscuits</h5>
+          <p href="./biscuits.php" class="card-text">Succombez à la tentation avec nos assortiments de biscuits artisanaux. Des sablés fondants aux shortbreads croustillants, chaque bouchée est une explosion de saveurs qui égayera vos pauses gourmandes.</p>
+          <button id="btnBiscuits">
+            <span>Plus d'infos</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  <script>
+    // Fonction pour rediriger vers la page appropriée
+    function redirectToPage(page) {
+      window.location.href = page;
+    }
+
+    // Ajouter un événement "click" aux boutons
+    document.getElementById('btnBoissons').addEventListener('click', function() {
+      redirectToPage('./boisson.php');
+    });
+
+    document.getElementById('btnBiscuits').addEventListener('click', function() {
+      redirectToPage('./biscuits.php');
+    });
+  </script>
+  
+</body>
 </html>

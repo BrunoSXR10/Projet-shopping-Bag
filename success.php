@@ -6,6 +6,6 @@
     <title>Document</title>
 </head>
 <body>
-    <p>boa</p>
+    <p>Vous avez été enregistré</p>
 </body>
 </html>
