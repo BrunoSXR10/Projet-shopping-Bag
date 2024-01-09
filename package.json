@@ -1,0 +1,9 @@
+{
+  "name": "Projet-shopping-Bag-main",
+  "lockfileVersion": 3,
+  "requires": true,
+  "packages": {},
+  "dependencies": {
+    "bootstrap-icons": "^1.11.2"
+  }
+}
