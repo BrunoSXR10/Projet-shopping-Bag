@@ -17,7 +17,7 @@ $loader = new \Twig\Loader\FilesystemLoader('templates');
 $twig = new \Twig\Environment($loader);
 
 echo $twig->render(
-    'panier.twig', 
+    'order.twig', 
     [
         'title' => 'ISIWEB4SHOP - Panier',
         'heading' => 'Votre Panier',

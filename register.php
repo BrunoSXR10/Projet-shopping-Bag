@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $pdo->prepare('INSERT INTO customers (surname, forname, city, address, email, phone, password) VALUES (?, ?, ?, ?, ?, ?, ?)');
         $stmt->execute([$surname, $forname, $city, $address, $email, $phone, $password]);
     } catch (PDOException $e) {
-        die('Erro ao inserir dados no banco de dados: ' . $e->getMessage());
+        die('Error to insert: ' . $e->getMessage());
     }
 
     header('Location: success.php');

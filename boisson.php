@@ -1,4 +1,5 @@
 <?php
+session_start();
 require 'vendor/autoload.php';
 require './models/connect.php';
 
@@ -10,23 +11,55 @@ try {
 }
 
 $statement = $pdo->query("SELECT * FROM products WHERE cat_id = 1");
-$products = $statement->fetchAll(PDO::FETCH_ASSOC);
+$product = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-foreach ($products as &$item) {
-    $item['image'] = 'img/' . $item['image'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add'])) {
+    $item_id = $_POST['item_id'];
+    $quantity = $_POST['quantity'];
+
+    try {
+        // Consultar o banco de dados para obter informações do item com base no ID
+        $stmt = $pdo->prepare('SELECT * FROM products WHERE id = ?');
+        $stmt->execute([$item_id]);
+        $item = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($item) {
+            // Inserir o item no carrinho (tabela "panier")
+            $stmt = $pdo->prepare('INSERT INTO panier (product_id, quantity) VALUES (?, ?)');
+            $stmt->execute([$item_id, $quantity]);
+        }
+    } catch (PDOException $e) {
+        die('Error to insert: ' . $e->getMessage());
+    }
+
+    header('Location: panier.php');
+    exit;
+}
+
+foreach ($product as &$item) {
+    try {
+        $item['image'] = 'img/' . $item['image'];
+        if (!file_exists($item['image'])) {
+            throw new Exception('Imagem não encontrada: ' . $item['image']);
+        }
+    } catch (Exception $e) {
+        die('Erro: ' . $e->getMessage());
+    }
 }
 
 $loader = new \Twig\Loader\FilesystemLoader('templates');
 $twig = new \Twig\Environment($loader);
 
 echo $twig->render(
-    'biscuits.twig', 
+    'product.twig', 
     [
         'title' => 'ISIWEB4SHOP - Boisson',
         'payer' => 'Voir Panier/Payer',
-        'heading' => 'Nos Boissons',
-        'itens' => $products,  // <-- Corrigindo para $products
+        'heading' => 'Nos drinks',
+        'itens' => $product,
         'listTitle' => 'NOS OFFRES',
         'account' => 'Votre Compte',
     ]
 );
+
+?>

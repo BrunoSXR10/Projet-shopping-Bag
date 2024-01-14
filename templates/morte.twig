@@ -1,0 +1,23 @@
+{% for item in itens %}
+    <div class="card mb-3">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="{{ item.image }}" alt="{{ item.name }}">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">{{ item.name }}</h5>
+                    <p class="card-text">{{ item.description }}</p>
+                    <form class="add-to-cart-form" onsubmit="addToCart('{{ item.id }}', '{{ key }}')"; return false;>
+                        <input type="hidden" name="item_id" value="{{ item.id }}">
+                        <label for="quantity{{ item.id }}">Quantidade:</label>
+                        <input type="number" id="quantity{{ item.id }}" name="quantity" min="0" max="50" step="1" value="1">
+                        <button type="submit" class="btn-acheter">
+                          <a href="?add={{ item.id }}">Adicionar ao Carrinho</a>
+                        </button>     
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
