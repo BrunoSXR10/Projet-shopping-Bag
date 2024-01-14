@@ -18,13 +18,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add'])) {
     $quantity = $_POST['quantity'];
 
     try {
-        // Consultar o banco de dados para obter informações do item com base no ID
         $stmt = $pdo->prepare('SELECT * FROM products WHERE id = ?');
         $stmt->execute([$item_id]);
         $item = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($item) {
-            // Inserir o item no carrinho (tabela "panier")
             $stmt = $pdo->prepare('INSERT INTO panier (product_id, quantity) VALUES (?, ?)');
             $stmt->execute([$item_id, $quantity]);
         }

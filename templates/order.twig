@@ -134,32 +134,16 @@
 			{% for item in cartItems %}
 				<div class="card mb-3">
 					<div class="row g-0">
-						<div class="col-md-4">
-							<img src="{{ item.image }}" alt="{{ item.name }}">
-						</div>
 						<div class="col-md-8">
 							<div class="card-body">
 								<h5 class="card-title">{{ item.name }}</h5>
-								<p class="card-text">{{ item.description }}</p>
-
-								<form class="remove-from-cart-form" method="POST" action="remove_from_cart.php">
-									<input type="hidden" name="remove" value="{{ item.id }}">
-									<button type="submit" class="btn-remove">
-										supprimer
-									</button>
-								</form>
-{# 
-								<form class="add-to-cart-form" method="POST" action="order.php">
-									<input type="hidden" name="add" value="{{ item.id }}">
-									<input type="hidden" name="item_id" value="{{ item.id }}">
-									<label for="quantity{{ item.id }}">Quantite:</label>
-									<input type="number" id="quantity{{ item.id }}" name="quantity" min="0" max="50" step="1" value="1">
-								</form> #}
 
 								{% set subtotal = item.price * item.quantity %}
 
 								<p>Price:
-									{{ subtotal }}$ | {{ item.quantity }} {{ item.name }}</p>
+									{{ subtotal }}$ |
+									{{ item.quantity }}
+									{{ item.name }}</p>
 
 								<!-- Adiciona a lógica para calcular o total -->
 
@@ -177,10 +161,36 @@
 
 
 			<form class"payer-form" method="POST" action="order.php">
-				<button type="submit" class="btn-acheter">
-					Acheter
-				</button>
+				<label for="name">Nom:</label>
+				<input type="text" id="name" name="name" required>
+
+				<label for="password">Mot de passe:</label>
+				<input type="password" id="password" name="password" required>
+
+				<label for="address">Adresse:</label>
+				<input
+				type="text" id="address" name="address" required>
+
+
+				<!-- Campos ocultos para enviar dados dos itens do carrinho -->
+				{% for item in cartItems %}
+					<input type="hidden" name="cart_items[{{ item.id }}][id]" value="{{ item.id }}">
+					<input type="hidden" name="cart_items[{{ item.id }}][name]" value="{{ item.name }}">
+					<input type="hidden" name="cart_items[{{ item.id }}][quantity]" value="{{ item.quantity }}">
+					<input type="hidden" name="cart_items[{{ item.id }}][price]" value="{{ item.price }}">
+				{% endfor %}
+
+				<label>Méthode de paiement:</label>
+				<input type="radio" id="cb_payment" name="payment_type" value="CB" checked>
+				<label for="cb_payment">Payer avec CB</label>
+
+				<input type="radio" id="abc_payment" name="payment_type" value="ABC">
+				<label for="abc_payment">Payer avec ABC</label>
+
+				<!-- Botão para enviar o formulário -->
+				<button type="submit" name="finish" class="btn-acheter">Confirmar payment</button>
 			</form>
 
+		</body>
 	</body>
 </html>

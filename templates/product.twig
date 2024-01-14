@@ -162,7 +162,7 @@
 								<p class="card-text">{{ item.description }}</p>
                                 <p class="card-text">Price: {{ item.price }}$</p>
 
-								<form class="add-to-cart-form" method="POST" action="biscuits.php">
+								<form class="add-to-cart-form" method="POST">
 									<input type="hidden" name="add" value="{{ item.id }}">
 									<input type="hidden" name="item_id" value="{{ item.id }}">
 									<label for="quantity{{ item.id }}">Quantidade:</label>

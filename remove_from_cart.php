@@ -10,7 +10,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remove'])) {
         $pdo = new PDO('mysql:host='.SERVER.';dbname='.BASE, USER, PASSWD);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        // Execute a operação DELETE na tabela "panier"
         $stmt = $pdo->prepare('DELETE FROM panier WHERE product_id = ?');
         $stmt->execute([$itemToRemove]);
     } catch (PDOException $e) {
